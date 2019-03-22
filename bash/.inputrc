@@ -1,0 +1,9 @@
+set editing-mode vi
+set keymap vi-command
+
+set show-all-if-ambiguous on
+TAB: menu-complete
+
+set show-mode-in-prompt on
+set vi-ins-mode-string "+"
+set vi-cmd-mode-string ":"

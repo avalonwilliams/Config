@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+PWR=$(pwr)
+CHARGING=$(adpt -o ' ' -f '')
+
+BATTERY_ICON_0=""
+BATTERY_ICON_25=""
+BATTERY_ICON_50=""
+BATTERY_ICON_75=""
+BATTERY_ICON_100=""
+
+if [[ $PWR -ge 90 ]]; then
+    ICON=$BATTERY_ICON_100
+elif [[ $PWR -ge 70 ]]; then
+    ICON=$BATTERY_ICON_75
+elif [[ $PWR -ge 40 ]]; then
+    ICON=$BATTERY_ICON_50
+elif [[ $PWR -ge 20 ]]; then
+    ICON=$BATTERY_ICON_25
+else
+    ICON=$BATTERY_ICON_0
+fi
+
+if [[ $PWR -eq 100 ]]; then
+    CHARGING=""
+fi
+
+echo "${CHARGING}${ICON} ${PWR}%"
+echo "${CHARGING}${ICON} ${PWR}%"

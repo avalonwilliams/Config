@@ -1,0 +1,4 @@
+modi: run,drun.window
+font: Fura Code Nerd Font 12
+theme: dracula
+show-icons: true

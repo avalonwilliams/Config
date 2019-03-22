@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [[ "$1" = "up" ]]; then
+    brightnessctl s +10
+else
+    if [[ "$(expr $(brightnessctl g) - 10)" -lt 11 ]]; then
+	brightnessctl s 10
+    else
+	brightnessctl s 10-
+    fi
+fi
+
+pkill -RTMIN+15 i3blocks

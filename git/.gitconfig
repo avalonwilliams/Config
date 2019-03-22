@@ -1,0 +1,8 @@
+[user]
+    name = AGitBoy
+    email = aidanwillie0317@protonmail.com
+
+[credential "https://github"]
+	com = AGitBoy
+[core]
+	excludesfile = ~/.global-gitignore

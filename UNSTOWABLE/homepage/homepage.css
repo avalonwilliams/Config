@@ -1,0 +1,35 @@
+body {
+  background: #282A36;
+}
+
+.bg {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.introtext {
+  font-size: 48px;
+  font-family: monospace;
+  color: #EEEEEE;
+  text-align: center;
+  margin-top: 20%;
+  margin-bottom: 0;
+}
+
+.subtext {
+  font-size: 14px;
+  font-family: monospace;
+  color: #9E9E9E;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.helptext {
+  font-size: 14px;
+  font-family: monospace;
+  color: #9E9E9E;
+  text-align: center;
+  margin-top: 3px;
+  margin-bottom: 15%;
+}

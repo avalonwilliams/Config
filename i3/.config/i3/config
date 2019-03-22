@@ -1,0 +1,233 @@
+# use meta key as mod
+set $mod Mod4
+
+# use Nerd Font for window titles, bars, etc.
+font pango:Fura Code Nerd Font Regular 8
+
+# dragging windows
+floating_modifier $mod
+
+# fixes for some windows that should be floating
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# start emacs
+bindsym $mod+Shift+Return exec emacs
+
+# start firefox
+bindsym $mod+Ctrl+Return exec firefox
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# rofi
+bindsym $mod+d exec rofi -show run
+bindsym $mod+Shift+d exec rofi -show drun
+bindsym $mod+Shift+w exec rofi -show window
+
+# network management
+bindsym $mod+n exec networkmanager_dmenu
+
+# pulseaudio device management
+bindsym $mod+p exec pmenu
+
+# bluetooth device management
+bindsym $mod+shift+b exec btmenu
+
+# mpd controls
+bindsym $mod+m exec mpdmenu
+bindsym $mod+Shift+m exec mpdmenu -p
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split direction changing
+bindsym $mod+Shift+v split h
+bindsym $mod+v split v
+
+# fullscreen
+bindsym $mod+f fullscreen toggle
+
+# layout keybindings
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle floating/tiling
+bindsym $mod+Shift+space floating toggle
+
+# move focus between floating and tiling
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# define workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# reload config
+bindsym $mod+Shift+c reload
+
+# restart i3
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "zenity --question --text='Exit i3?' && i3-msg exit"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+  # vim resize  
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
+
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+
+  # back to normal: Enter or Escape or $mod+r
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# audio keybindings
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && ogg123 /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && ogg123 /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && ogg123 /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+
+# brightness keybindings
+bindsym XF86MonBrightnessUp exec monitor-brightness up
+bindsym XF86MonBrightnessDown exec monitor-brightness down
+
+# music player keybindings
+bindsym XF86AudioPlay exec playerctl play-pause && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioPrev exec playerctl previous && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioNext exec playerctl next && pkill -RTMIN+10 i3blocks
+
+# bitwarden dmenu keybindings
+bindsym $mod+b exec bitwarden-dmenu --dmenu-pswd-args '\-l 0 \-password' --clear-clipboard 30 --session-timeout 100 --sync-vault-after 3600 --on-error 'xargs notify-send --urgency=low'
+
+# gaps
+gaps inner 5
+gaps outer 5
+smart_gaps on
+
+# theming
+default_border pixel 1
+hide_edge_borders both
+client.focused          #343746 #343746 #FFFFFF #FF79C6 #343746
+client.unfocused        #21222C #21222C #FFFFFF #FF79C6 #21222C
+client.focused_inactive #343746 #343746 #FFFFFF #FF79C6 #343746
+client.urgent           #282A36 #282A36 #FFFFFF #FF79C6 #282A36
+
+# i3bar
+bar {
+  position top
+  status_command i3blocks
+  font pango:Fura Code Nerd Font 8
+  separator_symbol " "
+  colors {
+    background #191A21
+    focused_workspace #FF79C6 #FF79C6 #FFFFFF
+    active_workspace #FF5555 #FF5555 #FFFFFF
+    inactive_workspace #21222C #21222C #FFFFFF
+  }
+
+  tray_output primary
+}
+
+# settings specific to my Ideapad 320-15ABR's touchpad
+# touchpad tapping
+exec_always xinput set-prop 'Synaptics TM3336-001' 276 1
+# natural scrolling
+exec_always xinput set-prop 'Synaptics TM3336-001' 284 1
+
+# mpd
+exec mpd
+
+# notification client
+exec dunst
+
+# compositor
+exec compton --config=$HOME/.config/compton/compton.conf
+
+# session manager
+exec lxsession
+
+# execute redshift with a fake LAT-LONG in NYC
+# Change if you don't live on the East coast of the US
+exec redshift -l 40:-73
+
+# set wallpaper
+exec_always nitrogen --set-scaled /usr/share/backgrounds/f28/extras/a-special-silent-sunset.jpg
+
+# light-locker
+exec light-locker --lock-on-lid --lock-on-suspend --set-idle-hint 10
+
+# Fedora is a bit weird with LightDM
+exec_always killall nm-applet
+
+# flashfocus
+exec_always --no-startup-id flashfocus

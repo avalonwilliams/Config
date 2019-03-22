@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+STEP="${STEP:-0.01}"
+
+case "$BLOCK_BUTTON" in
+  1)
+    playerctl play-pause
+    ;;
+  2)
+    playerctl next
+    ;;
+  3)
+    playerctl previous
+    ;;
+  4)
+    playerctl volume "$STEP+"
+    ;;
+  5)
+    playerctl volume "$STEP-"
+    ;;
+esac
+
+TITLE="$(playerctl metadata xesam:title 2>/dev/null)"
+ARTIST="$(playerctl metadata xesam:artist 2>/dev/null)"
+ICON=""
+STATUS="$(playerctl status 2>/dev/null)"
+
+if [[ -z $STATUS ]]; then
+  exit
+fi
+
+case "$STATUS" in
+  "Stopped")
+    exit
+    ;;
+  "Paused")
+    ICON=" "
+    ;;
+  "Playing")
+    ICON=" "
+    ;;
+esac
+
+if [[ ! -z "$ARTIST" ]]; then
+  ARTIST_STRING="$ARTIST - "
+fi
+
+if [[ ! -z "$STATUS" ]]; then
+  echo "${ICON}${ARTIST_STRING}${TITLE}"
+  echo "${ICON}${ARTIST_STRING}${TITLE}"
+fi  

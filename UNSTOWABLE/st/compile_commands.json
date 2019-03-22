@@ -1,0 +1,40 @@
+[
+    {
+        "arguments": [
+            "gcc", 
+            "-c", 
+            "-std=c99", 
+            "-I/usr/X11R6/include", 
+            "-I/usr/include/freetype2", 
+            "-I/usr/include/libpng16", 
+            "-I/usr/include/uuid", 
+            "-I/usr/include/freetype2", 
+            "-I/usr/include/libpng16", 
+            "-DVERSION=\"0.8.1\"", 
+            "-D_XOPEN_SOURCE=600", 
+            "-O", 
+            "st.c"
+        ], 
+        "directory": "/home/aidan/suckless/st", 
+        "file": "st.c"
+    }, 
+    {
+        "arguments": [
+            "gcc", 
+            "-c", 
+            "-std=c99", 
+            "-I/usr/X11R6/include", 
+            "-I/usr/include/freetype2", 
+            "-I/usr/include/libpng16", 
+            "-I/usr/include/uuid", 
+            "-I/usr/include/freetype2", 
+            "-I/usr/include/libpng16", 
+            "-DVERSION=\"0.8.1\"", 
+            "-D_XOPEN_SOURCE=600", 
+            "-O", 
+            "x.c"
+        ], 
+        "directory": "/home/aidan/suckless/st", 
+        "file": "x.c"
+    }
+]
