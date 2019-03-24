@@ -7,7 +7,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Make menu-bar-open use a keyboard-centric interface
-(fset 'menu-bar-open 'tmm-menubar)
+(if (display-graphic-p)
+    (fset 'menu-bar-open 'tmm-menubar))
 
 ;; I can manage my configuration myself, damn it!
 (setq custom-file "/dev/null")
@@ -186,7 +187,10 @@
   :config
   (require 'spaceline-config)
   (setq powerline-height 19)
-  (setq spaceline-window-numbers-unicode t)
+
+  (if (display-graphic-p)
+      (setq spaceline-window-numbers-unicode t))
+
   (setq powerline-default-separator 'wave)
 
   (setq spaceline-highlight-face-func

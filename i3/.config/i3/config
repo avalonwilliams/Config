@@ -132,22 +132,22 @@ bindsym $mod+Shift+e exec "zenity --question --text='Exit i3?' && i3-msg exit"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-  # vim resize  
-  bindsym h resize shrink width 10 px or 10 ppt
-  bindsym j resize grow height 10 px or 10 ppt
-  bindsym k resize shrink height 10 px or 10 ppt
-  bindsym l resize grow width 10 px or 10 ppt
+    # vim resize  
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-  # same bindings, but for the arrow keys
-  bindsym Left resize shrink width 10 px or 10 ppt
-  bindsym Down resize grow height 10 px or 10 ppt
-  bindsym Up resize shrink height 10 px or 10 ppt
-  bindsym Right resize grow width 10 px or 10 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-  # back to normal: Enter or Escape or $mod+r
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-  bindsym $mod+r mode "default"
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -177,6 +177,7 @@ smart_gaps on
 # theming
 default_border pixel 1
 hide_edge_borders both
+
 client.focused          #343746 #343746 #FFFFFF #FF79C6 #343746
 client.unfocused        #21222C #21222C #FFFFFF #FF79C6 #21222C
 client.focused_inactive #343746 #343746 #FFFFFF #FF79C6 #343746
@@ -184,18 +185,19 @@ client.urgent           #282A36 #282A36 #FFFFFF #FF79C6 #282A36
 
 # i3bar
 bar {
-  position top
-  status_command i3blocks
-  font pango:Fura Code Nerd Font 8
-  separator_symbol " "
-  colors {
-    background #191A21
-    focused_workspace #FF79C6 #FF79C6 #FFFFFF
-    active_workspace #FF5555 #FF5555 #FFFFFF
-    inactive_workspace #21222C #21222C #FFFFFF
-  }
+    position top
+    status_command i3blocks
+    font pango:Fura Code Nerd Font 8
+    separator_symbol " "
 
-  tray_output primary
+    colors {
+        background #191A21
+        focused_workspace  #FF79C6 #FF79C6 #FFFFFF
+        active_workspace   #FF5555 #FF5555 #FFFFFF
+        inactive_workspace #21222C #21222C #FFFFFF
+    }
+
+    tray_output primary
 }
 
 # settings specific to my Ideapad 320-15ABR's touchpad
@@ -223,7 +225,6 @@ exec redshift -l 40:-73
 # set wallpaper
 exec_always nitrogen --set-scaled /usr/share/backgrounds/f28/extras/a-special-silent-sunset.jpg
 
-# light-locker
 exec light-locker --lock-on-lid --lock-on-suspend --set-idle-hint 10
 
 # Fedora is a bit weird with LightDM

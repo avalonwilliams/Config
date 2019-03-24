@@ -1,31 +1,27 @@
 #!/usr/bin/env sh
 
-for profile in {bash,compton,scripts,dunst,emacs,git,i3,i3blocks,info,mpd,rofi,vim,xorg,zsh}; do
-  if stow $profile; then
-    echo -e "[$(tput setaf 2)OK$(tput sgr0)]\t$profile"
+status_cmd() {
+  if [ $1 = 0 ]; then
+    echo -e "[$(tput setaf 2)OK$(tput sgr0)]\t$2"
   else
-    echo -e "[$(tput setaf 1)ERROR$(tput sgr0)]\t$profile"
+    echo -e "[$(tput setaf 1)ERROR$(tput sgr0)]\t$2"
   fi
+}
+
+for profile in {bash,compton,scripts,dunst,emacs,git,i3,i3blocks,info,mpd,rofi,vim,xorg,zsh}; do
+  stow $profile
+  status_cmd $? $profile
 done
 
 if [ ! -d ~/.vim/plugged ]; then
-  if curl -fLo ~/.vim/autoload/plug.vim --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'; then
-    echo -e "[$(tput setaf 2)OK$(tput sgr0)]\tvim-plugged"
-  else
-    echo -e "[$(tput setaf 1)ERROR$(tput sgr0)]\tvim-plugged"
-  fi
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  status_cmd $? "vim-plugged"
 fi
 
 if [ ! -d ~/.zplug ]; then
-  if curl -sL --proto-redir -all,https 'https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh'; then
-    echo -e "[$(tput setaf 2)]OK$(tput sgr0)]\tzplug"
-  else
-    echo -e "[$(tput setaf 1)]ERROR$(tput sgr0)]\tzplug"
-  fi
+  curl -sL --proto-redir -all,https 'https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh'
+  status_cmd $? "zplug"
 fi
 
-if make -C UNSTOWABLE/st/ -f Makefile && sudo make -C UNSTOWABLE/st/ -f Makefile install; then
-  echo -e "[$(tput setaf 2)OK$(tput sgr0)]\tst"
-else
-  echo -e "[$(tput setaf 1)ERROR$(tput sgr0)]\tst"
-fi 
+make -C UNSTOWABLE/st/ -f Makefile && sudo make -C UNSTOWABLE/st/ -f Makefile install
+status_cmd $? "st"
