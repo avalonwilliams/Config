@@ -65,7 +65,8 @@ bindsym $mod+Shift+Right move right
 
 # split direction changing
 bindsym $mod+Shift+v split h
-bindsym $mod+v split v
+bindsym $mod+v       split v
+bindsym $mod+t       split t
 
 # fullscreen
 bindsym $mod+f fullscreen toggle
@@ -130,21 +131,18 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "zenity --question --text='Exit i3?' && i3-msg exit"
 
-# resize window (you can also use the mouse for that)
+# resize window move
 mode "resize" {
-    # vim resize  
-    bindsym h resize shrink width 10 px or 10 ppt
-    bindsym j resize grow height 10 px or 10 ppt
+    bindsym h resize shrink width  10 px or 10 ppt
+    bindsym j resize grow   height 10 px or 10 ppt
     bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize grow width 10 px or 10 ppt
+    bindsym l resize grow   width  10 px or 10 ppt
 
-    # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-
-    # back to normal: Enter or Escape or $mod+r
+    bindsym Left  resize shrink width  10 px or 10 ppt
+    bindsym Down  resize grow   height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow   width  10 px or 10 ppt
+    
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
@@ -152,13 +150,32 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# move window mode
+mode "move" {
+    bindsym h move left
+    bindsym j move down
+    bindsym k move up
+    bindsym l move right
+
+    bindsym Left  move left
+    bindsym Down  move down
+    bindsym Up    move up
+    bindsym Right move right
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+g mode "default"
+}
+
+bindsym $mod+g mode "move"
+
 # audio keybindings
 bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && ogg123 /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && ogg123 /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && ogg123 /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 
 # brightness keybindings
-bindsym XF86MonBrightnessUp exec monitor-brightness up
+bindsym XF86MonBrightnessUp   exec monitor-brightness up
 bindsym XF86MonBrightnessDown exec monitor-brightness down
 
 # music player keybindings
@@ -195,6 +212,7 @@ bar {
         focused_workspace  #FF79C6 #FF79C6 #FFFFFF
         active_workspace   #FF5555 #FF5555 #FFFFFF
         inactive_workspace #21222C #21222C #FFFFFF
+        binding_mode       #FF5555 #FF5555 #FFFFFF
     }
 
     tray_output primary

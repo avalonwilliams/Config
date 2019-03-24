@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Power display script, using my C programs:
+# pwr  - https://github.com/AGitBoy/pwr
+# adpt - https://github.com/AGitBoy/adpt
+
 PWR=$(pwr)
 CHARGING=$(adpt -o ' ' -f '')
 
