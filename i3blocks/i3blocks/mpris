@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# MPRIS Information display script
+
+
 STEP="${STEP:-0.01}"
 
 case "$BLOCK_BUTTON" in

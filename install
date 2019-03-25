@@ -8,7 +8,7 @@ status_cmd() {
   fi
 }
 
-for profile in {bash,compton,scripts,dunst,emacs,git,i3,i3blocks,info,mpd,rofi,vim,xorg,zsh}; do
+for profile in {bash,compton,scripts,dunst,emacs,git,i3,i3blocks,info,mpd,rofi,vim,xorg,zathura,zsh}; do
   stow $profile
   status_cmd $? $profile
 done

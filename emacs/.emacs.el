@@ -249,7 +249,11 @@
 
 ;;======= Language-server protocol support =======
 
-(use-package flycheck)
+(use-package flycheck 
+  :config
+  (setq-default flycheck-disabled-checkers 
+                '(c/c++-clang c/c++-cppcheck c/c++-gcc)))
+
 (use-package yasnippet)
 
 (use-package lsp-mode
@@ -265,6 +269,7 @@
 (use-package lsp-ui
   :requires lsp-mode
   :init
+  (setq lsp-ui-flycheck-enable t)
   (setq lsp-perfer-flymake nil)
   :hook (lsp-mode . lsp-ui-mode))
 
@@ -329,6 +334,13 @@
 (use-package neotree
   :config
   (global-set-key [f8] 'neotree-toggle))
+
+;; (add-to-list 'org-agenda-files
+;;              ("~/Agenda"
+;;               "~/TODO.org"))
+
+(setq org-agenda-files
+      '("~/Agenda" "~/TODO.org"))
 
 ;; TODO
 ;;   - Fix issues with C/C++ LSP support
