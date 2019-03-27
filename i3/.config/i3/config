@@ -225,25 +225,25 @@ exec_always xinput set-prop 'Synaptics TM3336-001' 276 1
 exec_always xinput set-prop 'Synaptics TM3336-001' 284 1
 
 # mpd
-exec mpd
+exec --no-startup-id mpd
 
 # notification client
-exec dunst
+exec --no-startup-id dunst
 
 # compositor
-exec compton --config=$HOME/.config/compton/compton.conf
+exec --no-startup-id compton --config=$HOME/.config/compton/compton.conf
 
 # session manager
-exec lxsession
+exec --no-startup-id lxsession
 
 # execute redshift with a fake LAT-LONG in NYC
 # Change if you don't live on the East coast of the US
-exec redshift -l 40:-73
+exec --no-startup-id redshift -l 40:-73
 
 # set wallpaper
-exec_always nitrogen --set-scaled /usr/share/backgrounds/f28/extras/a-special-silent-sunset.jpg
+exec_always --no-startup-id nitrogen --set-scaled /usr/share/backgrounds/f28/extras/a-special-silent-sunset.jpg
 
-exec light-locker --lock-on-lid --lock-on-suspend --set-idle-hint 10
+exec --no-startup-id light-locker --lock-on-lid --lock-on-suspend --set-idle-hint 10
 
 # Fedora is a bit weird with LightDM
 exec_always killall nm-applet

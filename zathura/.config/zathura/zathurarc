@@ -20,10 +20,11 @@ set highlight-color             "#44475A"
 set highlight-active-color      "#62d6e8"
 
 set completion-bg               "#282A36"
-set completion-fg               "#50FA7B"
+set completion-fg               "#F8F8F2"
 
 set completion-highlight-fg     "#FF79C6"
-set completion-highlight-bg     "#F8F8F2"
+" set completion-highlight-bg     "#F8F8F2"
+set completion-highlight-bg "#44475A"
 
 set recolor-lightcolor          "#282A36"
 set recolor-darkcolor           "#F1FA8C"
