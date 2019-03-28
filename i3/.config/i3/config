@@ -131,6 +131,10 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "zenity --question --text='Exit i3?' && i3-msg exit"
 
+# scratchpad keybindings
+bindsym $mod+o scratchpad show
+bindsym $mod+Shift+o move scratchpad
+
 # resize window move
 mode "resize" {
     bindsym h resize shrink width  10 px or 10 ppt
@@ -170,9 +174,9 @@ mode "move" {
 bindsym $mod+g mode "move"
 
 # audio keybindings
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && ogg123 /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && ogg123 /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && ogg123 /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && canberra-gtk-play -i audio-volume-change
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && canberra-gtk-play -i audio-volume-change
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && canberra-gtk-play -i audio-volume-change 
 
 # brightness keybindings
 bindsym XF86MonBrightnessUp   exec monitor-brightness up
@@ -182,6 +186,9 @@ bindsym XF86MonBrightnessDown exec monitor-brightness down
 bindsym XF86AudioPlay exec playerctl play-pause && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioPrev exec playerctl previous && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioNext exec playerctl next && pkill -RTMIN+10 i3blocks
+
+# Screenshot keybindings
+bindsym --release Print exec scrot -e 'mv $f ~/Pictures/' && canberra-gtk-play -i screen-capture
 
 # bitwarden dmenu keybindings
 bindsym $mod+b exec bitwarden-dmenu --dmenu-pswd-args '\-l 0 \-password' --clear-clipboard 30 --session-timeout 100 --sync-vault-after 3600 --on-error 'xargs notify-send --urgency=low'

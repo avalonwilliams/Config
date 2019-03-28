@@ -50,6 +50,9 @@ call plug#begin('~/.vim/plugged')
   " Distraction free note taking
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
+
+  " Info pager
+  Plug 'alx741/vinfo'
 call plug#end()
 
 set hidden
