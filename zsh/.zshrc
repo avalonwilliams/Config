@@ -12,14 +12,17 @@ source ~/.zplug/init.zsh
   zplug "RobSis/zsh-completion-generator"
   
   # Theme
-  zplug "agkozak/agkozak-zsh-prompt"
+  if [[ "$(tput colors)" -ge 256 ]]; then
+    zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
+  fi
 
   zplug "zsh-users/zsh-completions"
 
   # Fish-like features
-  zplug "zsh-users/zsh-autosuggestions", if:"[[ $(tput colors) -gt 8 ]]"
-
-  zplug "zdharma/fast-syntax-highlighting"
+  if [[ "$(tput colors)" -gt 8 ]]; then
+    zplug "zsh-users/zsh-autosuggestions"
+    zplug "zdharma/fast-syntax-highlighting"
+  fi
   zplug "zsh-users/zsh-history-substring-search"
 
   # Install plugin automatic
@@ -91,6 +94,15 @@ export LESS_TERMCAP_ZN=$(tput ssubm)
 export LESS_TERMCAP_ZV=$(tput rsubm)
 export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
+
+# export LESS_TERMCAP_mb=$'\E[01;31m'
+# export LESS_TERMCAP_md=$'\E[01;31m'
+# export LESS_TERMCAP_me=$'\E[0m'
+# export LESS_TERMCAP_se=$'\E[0m'
+# export LESS_TERMCAP_so=$'\E[01;44;33m'
+# export LESS_TERMCAP_ue=$'\E[0m'
+# export LESS_TERMCAP_us=$'\E[01;32m'
+
 export GROFF_NO_SGR=1
 
 # Fedora/CentOS's 'vimx'
@@ -203,8 +215,14 @@ fi
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+
+# function for the launching a new (seperate) window
+launch() {
+  1&>/dev/null 2&>/dev/null $@ & disown
+}
+
 # Keybindings
-set -o vi
+bindkey -v
 
 # vi keys completion menu
 bindkey -M menuselect 'h' vi-backward-char
@@ -219,16 +237,32 @@ bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-# function for the launching a new (seperate) window
-launch() {
-  1&>/dev/null 2&>/dev/null $@ & disown
-}
-
 # Theming
-PROMPT='%(?..%B%F{red}(%?%)%f%b )'
-PROMPT+='%(!.%S%B.%B%F{green})%n@%m%1v%(!.%b%s.%f%b):'
-PROMPT+=$'%B%F{blue}%2v%f%b'
-PROMPT+='%(4V.>.%(!.%#.$)) '
+DEFAULT_USER="aidan"
+POWERLEVEL9K_DISABLE_RPROMPT=true
+POWERLEVEL9K_MODE="nerdfont-complete"
 
-RPROMPT='%(3V.%F{yellow}%3v%f.)'
+POWERLEVEL9K_STATUS_HIDE_SIGNAME=true
+POWERLEVEL9K_STATUS_OK=false
 
+POWERLEVEL9K_VI_INSERT_MODE_STRING='I'
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='N'
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND="2"
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND="0"
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND="6"
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND="0"
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+  vi_mode
+  status
+  context
+  dir
+  virtualenv
+  vcs
+)
+
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+  status
+)
+
+VIRTUAL_ENV_DISABLE_PROMPT=1

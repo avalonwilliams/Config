@@ -2,7 +2,7 @@
 ! Dracula color scheme
 *.foreground: #F8F8F2
 *.background: #282A36
-*.color0:     #000000
+*.color0:     #282A36
 *.color8:     #4D4D4D
 *.color1:     #FF5555
 *.color9:     #FF6E67
@@ -20,7 +20,7 @@
 *.color15:    #E6E6E6
 
 ! st settings
-st.font:  Fura Code Nerd Font Mono:pixelsize=12:antialias=true:autohint=true
+st.font:  Fura Code Nerd Font:pixelsize=12:antialias=true:autohint=true
 st.alpha: 255
 
 ! rofi settings

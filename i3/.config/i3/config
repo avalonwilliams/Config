@@ -252,8 +252,8 @@ exec_always --no-startup-id nitrogen --set-scaled /usr/share/backgrounds/f28/ext
 
 exec --no-startup-id light-locker --lock-on-lid --lock-on-suspend --set-idle-hint 10
 
-# Fedora is a bit weird with LightDM
-exec_always killall nm-applet
+# for some reason my caps lock key turns on whenever I login
+exec --no-startup-id xset led off
 
 # flashfocus
 exec_always --no-startup-id flashfocus
