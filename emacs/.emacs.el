@@ -16,8 +16,8 @@
 
 ;;======= Indentation =======
 
-(setq-default indent-tabs-mode t)
-(setq tab-width 8)
+(setq-default indent-tabs-mode nil)
+(setq tab-width 4)
 
 (defvaralias 'c-basic-offset 'tab-width)
 
