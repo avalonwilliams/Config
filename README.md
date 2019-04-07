@@ -1,3 +1,5 @@
+# [THIS PROJECT HAS BEEN MIGRATED TO GITLAB](https://gitlab.com/AGitBoy/Config)
+
 # Config
 My configurations and scripts for vim, emacs, i3, rofi, and more, using GNU Stow.
 
